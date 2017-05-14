@@ -6,8 +6,8 @@
     <title>Linked List</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="normalize.css">
-    <link rel="stylesheet" type="text/css" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,800" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
   </head>
 
   <body>
@@ -16,7 +16,7 @@
 
         <p role="banner">
           Linked
-          <img src="" alt="linked list logo">
+          <img src="/Users/lauracaroselli/turing/1-mod/linked-list/linked-list-logo.svg" alt="linked list logo">
           List
         </p>
 
@@ -25,7 +25,7 @@
         </label>
 
         <label for="input-website-url">
-          <input type="url" name="input-url" id="input-website=-url" placeholder="Website URL">
+          <input type="url" name="input-url" id="input-website-url" placeholder="Website URL">
         </label>
 
         <label for="input-submit-bookmark">
@@ -38,11 +38,29 @@
     <section id="user-display">
 
       <article class="bookmark-card">
-        <h3 class="bookmark-title">Website Title</h3>
+        <h3 class="bookmark-title">The Website Title</h3>
 
         <hr class="bookmark-underline">
 
-        <a class="bookmark-link" href="#">the link</a>
+        <a class="bookmark-link" href="#">www.thewebsiteurl.com</a>
+
+        <hr class="bookmark-underline">
+
+        <label for="bookmark-button-read">
+          <input type="button" name="bookmark-read" id="bookmark-button-read" value="Read">
+        </label>
+
+        <label for="bookmark-button-delete">
+          <input type="button" name="bookmark-delete" id="bookmark-button-delete" value="Delete">
+        </label>
+      </article>
+
+      <article class="bookmark-card">
+        <h3 class="bookmark-title">The Website Title</h3>
+
+        <hr class="bookmark-underline">
+
+        <a class="bookmark-link" href="#">www.thewebsiteurl.com</a>
 
         <hr class="bookmark-underline">
 
@@ -56,6 +74,7 @@
       </article>
 
     </section>
+
     <script type="text/javascript" src="script.js"/>
   </body>
 
