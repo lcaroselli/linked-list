@@ -56,16 +56,18 @@ body {
   background-color: #CFD8DC;
   display: inline-block;
   float: right;
-  /*margin: 0 20px;*/
-  padding: 0px 20px;
+  height: 600px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding: 0 20px;
   width: 50%;
 }
 
-#user-input{
+#user-input {
   background-color: #455A64;
   display: inline-block;
   float:left;
-  /*margin: 0 20px;*/
+  height: 600px;
   padding: 0 20px;
   width: 50%;
 }
@@ -85,7 +87,6 @@ body {
 
 .bookmark-underline {
   color: #CFD8DC;
-  /*margin: 10px;*/
 }
 
 .bookmark-link {
