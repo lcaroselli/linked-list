@@ -9,83 +9,54 @@ need functions for:
 
 
 // Global Variables
-
 var userDisplaySection = document.getElementById("user-display");
 var inputWebsiteTitle = document.getElementById("input-website-title");
 var inputWebsiteUrl = document.getElementById("input-website-url");
 var inputSubmitBookmark = document.getElementById("input-submit-bookmark");
 
-// Event Listeners
 
+// Events
 inputSubmitBookmark.addEventListener("click", createBookmark);
 //bookmarkButtonDelete.addEventListener("click", "REMOVE INDIVIDUAL BOOKMARK");
 
-//Constructor Function (Our Blueprint)
+
+//Functions
+//Constructor Function (Blueprint)
 function BookmarkCard (webTitle, webUrl, isRead) {
   this.webTitle = webTitle;
   this.webUrl = webUrl;
   this.isRead = isRead;
 }
 
+
 function createBookmark() {
   var sampleCard = new BookmarkCard(inputWebsiteTitle.value, inputWebsiteUrl.value, false);
-  console.log (sampleCard);
   outputBookmarks(sampleCard);
 }
 
 
-function outputBookmarks(param1) {
-  var title = param1.webTitle;
-  var url = param1.webUrl;
+function outputBookmarks(newBookmark) {
+  var title = newBookmark.webTitle;
+  var url = newBookmark.webUrl;
 
   var newArticle = document.createElement("article");
   newArticle.className = "bookmark-card";
 
-  var newHeader = document.createElement("h3");
-  newHeader.className = "bookmark-title";
-  newHeader.innerText = title;
-  newArticle.appendChild(newHeader);
+  newArticle.innerHTML =
+    `<h3 class="bookmark-title">` + title + `</h3>
 
-  var newHr = document.createElement("hr");
-  newHr.className = "bookmark-underline";
-  newArticle.appendChild(newHr);
+      <hr class="bookmark-underline">
 
-  var newUrl = document.createElement("a");
-  newUrl.className = "bookmark-link";
-  newUrl.innerText = url;
-  newUrl.href = url;
-  newUrl.target = "_blank";
-  newArticle.appendChild(newUrl);
+      <a class="bookmark-link" href="` + url + `" target="_blank">` + url + `</a>
 
-  newArticle.appendChild(newHr.cloneNode(true));
+      <hr class="bookmark-underline">
 
-  var newReadButton = document.createElement("input");
-  newReadButton.type = "button";
-  newReadButton.name = "bookmark-read";
-  //newReadButton.id = "bookmark-button-read";
-  //aria-label
-  newReadButton.value = "Read";
-  newArticle.appendChild(newReadButton);
+      <input type="button" aria-label="mark bookmark card read" name="bookmark-read" value="Read">
 
-  //Toggle read class
-  $
+      <input type="button" aria-label="delete bookmark card" name="bookmark-delete" value="Delete">`
 
-
-  var newDeleteButton = document.createElement("input");
-  newDeleteButton.type = "button";
-  newDeleteButton.name = "bookmark-delete";
-  //newReadButton.id = "bookmark-button-read";
-  //aria-label
-  newDeleteButton.value = "Delete";
-  newArticle.appendChild(newDeleteButton);
-
-  //newArticle.appendChild(newContent); //add the text node to the newly created div.
-
-  // add the newly created element and its content into the DOM
   userDisplaySection.appendChild(newArticle);
-  //document.body.insertBefore(newDiv, currentDiv);
 }
-
 
 
 function removeBookmarks() {
@@ -93,3 +64,16 @@ function removeBookmarks() {
     userDisplaySection.removeChild(userDisplaySection.firstChild);
   }
 }
+
+
+
+/*anytime enter is clicked, add a new bookmark
+inputSubmitBookmark.addEventListener('click', function () {
+  var newArticle = document.createElement("article");
+  newArticle.className = "bookmark-card";
+  // Adding text content to the new dom node
+  newArticle.textContent = "New article!";
+  // Spitting said dom node on to page
+  newArticle.appendChild(newHeader)
+  etc etc
+});*/

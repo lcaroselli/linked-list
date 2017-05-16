@@ -115,3 +115,8 @@ body {
   font-weight: 800;
   text-decoration-color: #FFC107;
 }
+
+.read {
+  background-color: red;
+  color: yellow;
+}
