@@ -67,6 +67,9 @@ function outputBookmarks(param1) {
   newReadButton.value = "Read";
   newArticle.appendChild(newReadButton);
 
+  //Toggle read class
+  $
+
 
   var newDeleteButton = document.createElement("input");
   newDeleteButton.type = "button";
