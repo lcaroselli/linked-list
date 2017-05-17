@@ -95,11 +95,11 @@ body {
   text-decoration-color: #F2F4F4;
 }
 
-#bookmark-button-delete {
+.bookmark-button-delete {
   float: right;
 }
 
-#bookmark-button-delete, #bookmark-button-read {
+.bookmark-button-delete, .bookmark-button-read {
   background-color: transparent;
   border: none;
   color: #455A64;
@@ -109,7 +109,7 @@ body {
   text-decoration-color: #F2F4F4;
 }
 
-.bookmark-link:hover, #bookmark-button-read:hover, #bookmark-button-delete:hover {
+.bookmark-link:hover, .bookmark-button-read:hover, .bookmark-button-delete:hover {
   color: #455A64;
   cursor: pointer;
   font-weight: 800;
