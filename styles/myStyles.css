@@ -9,9 +9,7 @@ body {
 }
 
 #input-wrapper {
-  /*display: block;*/
   margin: auto;
-  /*padding: 20px;*/
 }
 
 #input-wrapper p{
@@ -52,6 +50,10 @@ body {
   background-color: #FFD773;
 }
 
+#input-submit-bookmark:disabled {
+  background-color: grey;
+}
+
 #user-display {
   background-color: #CFD8DC;
   display: inline-block;
@@ -79,6 +81,13 @@ body {
   padding: 10px 10px 5px 10px;
 }
 
+.bookmark-counters {
+  color: white;
+  font-size: 18px;
+  letter-spacing: 2px;
+  text-shadow: -1px 0 #FFC107, 0 1px #FFC107, 1px 0 #FFC107, 0 -1px #FFC107;
+}
+
 .bookmark-title {
   color: #455864;
   font-weight: 800;
@@ -99,7 +108,7 @@ body {
   float: right;
 }
 
-.bookmark-button-delete, .bookmark-button-read {
+.bookmark-button-delete, .bookmark-button-read{
   background-color: transparent;
   border: none;
   color: #455A64;
@@ -117,6 +126,11 @@ body {
 }
 
 .read {
-  background-color: red;
-  color: yellow;
+  background-color: #F2F4F4;
+  text-decoration-color: #CFD8DC;
+}
+
+.read input[value="Read"]{
+  color: red;
+  font-weight: 800;
 }

@@ -1,24 +1,21 @@
-/*
-TO DO:
-need functions for:
-- array manipulation: add card to array, remove card from array, mark as read
-- dom manipulation:   loop through array and add each card to dom
-                      destroy all cards
-- bookmark builder: a function that builds our html elements and applies the styling
-*/
-
-
 // Global Variables
 var userDisplaySection = document.getElementById("user-display");
 var inputWebsiteTitle = document.getElementById("input-website-title");
 var inputWebsiteUrl = document.getElementById("input-website-url");
 var inputSubmitBookmark = document.getElementById("input-submit-bookmark");
+    inputSubmitBookmark.disabled = true;
 var bookmarkArray = [];
+var totalBookmarksAdded = document.getElementById("total-added");
+var totalBookmarksRead = document.getElementById("total-read");
+var totalBookmarksUnread = document.getElementById("total-unread");
 
 
 // Global Events
 inputSubmitBookmark.addEventListener("click", createBookmark);
 
+inputWebsiteTitle.addEventListener("input", inputFieldsChanged);
+
+inputWebsiteUrl.addEventListener("input", inputFieldsChanged);
 
 
 //Functions
@@ -27,18 +24,50 @@ function BookmarkCard (webTitle, webUrl, isRead) {
   this.webTitle = webTitle;
   this.webUrl = webUrl;
   this.isRead = isRead;
-  this.cardId = bookmarkArray.length +1;
+  this.cardId = Math.floor(Math.random() * 999999);
 }
 
 
+function displayCounts() {
+  var totalRead = 0;
+  var totalUnread = 0;
+  for (var i = 0; i < bookmarkArray.length; i++)
+  {
+    if (bookmarkArray[i].isRead === true){
+      totalRead++;
+    } else if (bookmarkArray[i].isRead === false) {
+      totalUnread++;
+    }
+  }
+
+  totalBookmarksAdded.innerText = "Total Bookmarks Added: " + bookmarkArray.length;
+
+  totalBookmarksRead.innerText = "Total Read Bookmarks: " + totalRead;
+
+  totalBookmarksUnread.innerText =  "Total Unread Bookmarks: " + totalUnread;
+}
+
+
+function inputFieldsChanged() {
+  if (inputWebsiteUrl.value == "" && inputWebsiteTitle.value == "") {
+    inputSubmitBookmark.disabled = true;
+  } else {
+    inputSubmitBookmark.disabled = false;
+  }
+}
+
 function createBookmark() {
+  if (inputWebsiteUrl.value == "" || inputWebsiteTitle.value == "") {
+    alert("Please enter both a URL and a Title.");
+  } else {
   var sampleCard = new BookmarkCard(inputWebsiteTitle.value, inputWebsiteUrl.value, false);
   outputBookmarks(sampleCard); //pushes onto DOM (adds HTML)
   bookmarkArray.push(sampleCard); //pushes into array
+  displayCounts();
+}
 }
 
 
-//When here, outputBookmarks parameter is now the sampleCard
 function outputBookmarks(newBookmark) {
   var title = newBookmark.webTitle;
   var url = newBookmark.webUrl;
@@ -46,7 +75,11 @@ function outputBookmarks(newBookmark) {
   var isRead = newBookmark.isRead;
 
   var newArticle = document.createElement("article");
-  newArticle.className = "bookmark-card";
+  if (isRead) {
+    newArticle.className = "bookmark-card read";
+  } else {
+    newArticle.className = "bookmark-card";
+  }
   newArticle.id = cardId;
 
   newArticle.innerHTML =
@@ -62,10 +95,15 @@ function outputBookmarks(newBookmark) {
 
       <input type="button" aria-label="delete bookmark card" name="bookmark-delete" class="bookmark-button-delete" value="Delete">`
 
+  var bookmarkButtonRead = newArticle.querySelector(".bookmark-button-read");
+    bookmarkButtonRead.addEventListener('click', function() {
+      toggleRead(bookmarkButtonRead);
+    });
+
   var bookmarkButtonDelete = newArticle.querySelector(".bookmark-button-delete");
     bookmarkButtonDelete.addEventListener('click', function() {
       deleteBookmark(bookmarkButtonDelete);
-    })
+    });
 
   userDisplaySection.appendChild(newArticle);
 }
@@ -82,12 +120,12 @@ function deleteBookmark(param1) {
 }
 
 
-//wire up event listener & css based on isRead
 function toggleRead(param1) {
   var articleId = param1.closest("article").id;
   var indexToToggle = findBookmarkIndex(articleId);
   if (indexToToggle > -1) {
     bookmarkArray[indexToToggle].isRead = !(bookmarkArray[indexToToggle].isRead);
+    rebuildBookmarks();
   }
 }
 
@@ -114,4 +152,5 @@ function rebuildBookmarks () {
   for (var i = 0; i < bookmarkArray.length; i++) {
     outputBookmarks(bookmarkArray[i]);
   }
+  displayCounts();
 }
