@@ -3,18 +3,16 @@ var userDisplaySection = document.getElementById("user-display");
 var inputWebsiteTitle = document.getElementById("input-website-title");
 var inputWebsiteUrl = document.getElementById("input-website-url");
 var inputSubmitBookmark = document.getElementById("input-submit-bookmark");
-    inputSubmitBookmark.disabled = true;
-var bookmarkArray = [];
 var totalBookmarksAdded = document.getElementById("total-added");
 var totalBookmarksRead = document.getElementById("total-read");
 var totalBookmarksUnread = document.getElementById("total-unread");
 
+var bookmarkArray = [];
+inputSubmitBookmark.disabled = true;
 
 // Global Events
 inputSubmitBookmark.addEventListener("click", createBookmark);
-
 inputWebsiteTitle.addEventListener("input", inputFieldsChanged);
-
 inputWebsiteUrl.addEventListener("input", inputFieldsChanged);
 
 
@@ -41,9 +39,7 @@ function displayCounts() {
   }
 
   totalBookmarksAdded.innerText = "Total Bookmarks Added: " + bookmarkArray.length;
-
   totalBookmarksRead.innerText = "Total Read Bookmarks: " + totalRead;
-
   totalBookmarksUnread.innerText =  "Total Unread Bookmarks: " + totalUnread;
 }
 
@@ -56,15 +52,16 @@ function inputFieldsChanged() {
   }
 }
 
+
 function createBookmark() {
   if (inputWebsiteUrl.value == "" || inputWebsiteTitle.value == "") {
     alert("Please enter both a URL and a Title.");
   } else {
-  var sampleCard = new BookmarkCard(inputWebsiteTitle.value, inputWebsiteUrl.value, false);
-  outputBookmarks(sampleCard); //pushes onto DOM (adds HTML)
-  bookmarkArray.push(sampleCard); //pushes into array
-  displayCounts();
-}
+    var sampleCard = new BookmarkCard(inputWebsiteTitle.value, inputWebsiteUrl.value, false);
+    outputBookmarks(sampleCard); //pushes onto DOM (adds HTML)
+    bookmarkArray.push(sampleCard); //pushes into array
+    displayCounts();
+  }
 }
 
 
