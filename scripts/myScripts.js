@@ -18,7 +18,7 @@ inputWebsiteUrl.addEventListener("input", inputFieldsChanged);
 
 //Functions
 //Constructor Function (Blueprint)
-function BookmarkCard (webTitle, webUrl, isRead) {
+function BookmarkCard(webTitle, webUrl, isRead) {
   this.webTitle = webTitle;
   this.webUrl = webUrl;
   this.isRead = isRead;
@@ -29,9 +29,8 @@ function BookmarkCard (webTitle, webUrl, isRead) {
 function displayCounts() {
   var totalRead = 0;
   var totalUnread = 0;
-  for (var i = 0; i < bookmarkArray.length; i++)
-  {
-    if (bookmarkArray[i].isRead === true){
+  for (var i = 0; i < bookmarkArray.length; i++) {
+    if (bookmarkArray[i].isRead === true) {
       totalRead++;
     } else if (bookmarkArray[i].isRead === false) {
       totalUnread++;
@@ -40,7 +39,7 @@ function displayCounts() {
 
   totalBookmarksAdded.innerText = "Total Bookmarks Added: " + bookmarkArray.length;
   totalBookmarksRead.innerText = "Total Read Bookmarks: " + totalRead;
-  totalBookmarksUnread.innerText =  "Total Unread Bookmarks: " + totalUnread;
+  totalBookmarksUnread.innerText = "Total Unread Bookmarks: " + totalUnread;
 }
 
 
@@ -58,6 +57,7 @@ function createBookmark() {
     alert("Please enter both a URL and a Title.");
   } else {
     var sampleCard = new BookmarkCard(inputWebsiteTitle.value, inputWebsiteUrl.value, false);
+
     outputBookmarks(sampleCard); //pushes onto DOM (adds HTML)
     bookmarkArray.push(sampleCard); //pushes into array
     displayCounts();
@@ -93,19 +93,17 @@ function outputBookmarks(newBookmark) {
       <input type="button" aria-label="delete bookmark card" name="bookmark-delete" class="bookmark-button-delete" value="Delete">`
 
   var bookmarkButtonRead = newArticle.querySelector(".bookmark-button-read");
-    bookmarkButtonRead.addEventListener('click', function() {
-      toggleRead(bookmarkButtonRead);
-    });
+  bookmarkButtonRead.addEventListener('click', function () {
+    toggleRead(bookmarkButtonRead);
+  });
 
   var bookmarkButtonDelete = newArticle.querySelector(".bookmark-button-delete");
-    bookmarkButtonDelete.addEventListener('click', function() {
-      deleteBookmark(bookmarkButtonDelete);
-    });
+  bookmarkButtonDelete.addEventListener('click', function () {
+    deleteBookmark(bookmarkButtonDelete);
+  });
 
   userDisplaySection.appendChild(newArticle);
 }
-
-
 
 function deleteBookmark(param1) {
   var articleId = param1.closest("article").id;
@@ -144,7 +142,7 @@ function removeBookmarks() {
 }
 
 
-function rebuildBookmarks () {
+function rebuildBookmarks() {
   removeBookmarks();
   for (var i = 0; i < bookmarkArray.length; i++) {
     outputBookmarks(bookmarkArray[i]);
